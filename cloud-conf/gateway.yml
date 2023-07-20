@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: 1
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customers/**
+        - id: 2
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/products/**
+        - id: 2
+          uri: lb://BILLING-SERVICE
+          predicates:
+            - Path=/bills/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
